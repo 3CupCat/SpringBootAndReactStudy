@@ -1,21 +1,11 @@
-package org.example.entity;
+package org.example.dto;
 
-import jakarta.persistence.*;
-
-import java.util.ArrayList;
-import java.util.List;
-
-@Entity
-public class Users {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+public class UserDTO {
     private Integer userId;
 
     private String mail ;
 
     private String secret;
-
-
 
     public Integer getUserId() {
         return userId;
@@ -40,6 +30,4 @@ public class Users {
     public void setSecret(String secret) {
         this.secret = secret;
     }
-
-
 }

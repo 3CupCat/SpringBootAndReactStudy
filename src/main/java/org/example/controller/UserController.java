@@ -1,38 +1,51 @@
 package org.example.controller;
 
 import org.example.dto.Result;
+import org.example.entity.Users;
 import org.example.service.UserService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user")
 public class UserController {
+
     private UserService userService;
 
     public UserController(UserService userService){
         System.out.println(456);
-        this.userService = userService;
+        this.userService=userService;
     }
 
-    @GetMapping("/test")
-    public Result test(){
-        System.out.println(123);
-        return new Result(200,"success");
-    }
+
     @PostMapping("/test")
-    public Result test2(){
-        System.out.println(456);
-        return new Result();
+    public Result test(@RequestBody Users users){
+        return userService.test(users);
     }
+
 
     @PostMapping("/createUser")
-    public Result createUser(){
-        System.out.println(456);
-        return new Result();
+    public Result createUser(@RequestBody Users users){
+        return userService.createUser(users);
     }
+
+    @PutMapping("/updateUser")
+    public Result updateUser(){
+        return userService.updateUser();
+    }
+    @DeleteMapping("/deleteUser")
+    public Result deleteUser(){
+        return userService.deleteUser();
+    }
+
+    @GetMapping("/getUser/{id}")
+    public Result getUser(@PathVariable Integer id){
+        return userService.getUser(id);
+    }
+
+
+
+
+
 
 
 
